@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "Closeer",
+    "slug": "closeer-clone-ui",
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
+    },
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/images/Icon.png",
+    "scheme": "myapp",
+    "splash": {
+      "image": "./src/assets/images/splashScreen.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "bundleIdentifier": "closeer.clone",
+      "buildNumber": "1.0.0",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "closeer.clone",
+      "versionCode": 1
+    },
+    "description": "A Interface redesign of the Closeer App. ",
+    "sdkVersion": "38.0.0",
+    "entryPoint": "node_modules/expo/AppEntry.js",
+    "githubUrl": "https://github.com/viniciusraja/Closeer-CloneUI"
+  }
+}
