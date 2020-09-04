@@ -42,6 +42,11 @@ export const styles = StyleSheet.create({
     fontFamily: Constants.Fonts.primaryBoldFontFamily,
     color: Constants.Colors.primaryText,
   },
+  actionImage: {
+    height: '100%',
+    width: '100%',
+    borderRadius: Constants.Layout.window.height * 0.18,
+  },
   selectButton: {
     textAlign: 'center',
     textAlignVertical: 'center',

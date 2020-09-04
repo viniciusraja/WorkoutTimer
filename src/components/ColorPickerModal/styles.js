@@ -3,13 +3,22 @@ import Constants from 'config/constants';
 
 export const styles = StyleSheet.create({
   container: {
-    height: Constants.Layout.window.height * 0.6,
-    width: '100%',
+    position: 'absolute',
     paddingVertical: 20,
-    justifyContent: 'center',
+    bottom:
+      (Constants.Layout.window.height - Constants.Layout.headerHeight) / 2 -
+      Constants.Layout.window.height * 0.3,
+    height: Constants.Layout.window.height * 0.6,
+    width: Constants.Layout.window.width * 0.9,
+    backgroundColor: Constants.Colors.backgroundColorLight,
+    borderRadius: Constants.Layout.window.height * 0.015,
     alignItems: 'center',
+    justifyContent: 'space-evenly',
+    alignSelf: 'center',
   },
   header: {
+    position:'absolute',
+    top:10,
     width: '100%',
     justifyContent: 'center',
     alignSelf: 'center',
