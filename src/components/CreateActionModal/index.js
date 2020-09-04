@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Animated,
   Text,
   TextInput,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import Constants from 'config/constants';
 import { styles } from './styles';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-import { setShowCreateActionComponent, setShowEditingColorActionComponent } from 'store/myActions/actions';
+import { setShowCreateActionComponent, setShowEditingColorActionComponent, setImageToActionComponent } from 'store/myActions/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import expoConstants from 'expo-constants';
+import * as ImagePicker from 'expo-image-picker';
+import * as Random from 'expo-random';
 import ColorPickerModal from 'components/ColorPickerModal';
+import * as FileSystem from 'expo-file-system';
+import getFile from 'utils/getFileInformation'
 export default function CreateActionModal(props) {
   const [actionName, setActionName] = useState('');
   const dispatch = useDispatch();
@@ -22,9 +28,66 @@ export default function CreateActionModal(props) {
     (state) => state.getActions.editingActionComponet
   );
 
+  
+  useEffect(() => {
+    (async () => {
+      try{
+      if (expoConstants.platform.ios) {
+        const {
+          status,
+        } = await ImagePicker.requestCameraRollPermissionsAsync();
+        if (status !== 'granted') {
+          Alert.alert('Precisamos de permissão para acessar sua galeria!');
+        }
+      }
+    }catch(error){
+      console.log(error)
+    }
+    })();
+  }, []);
+  const pickImage = async () => {
+    try{
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+    const {fileType,fileName}=getFile(result.uri)
+    const randomBytes = await Random.getRandomBytesAsync(3);
+    const randomFileName=`${fileName}-${randomBytes[0]}-${randomBytes[1]}-${randomBytes[2]}`
+    if (!result.cancelled) {
+      result.uri =
+        Platform.OS === 'android'
+          ? result.uri
+          : result.uri.replace('file://', '');
+      result.type = `${result.type}/${
+        (result.uri.split('.'),
+        result.uri.split('.')[result.uri.split('.').length - 1])
+      }`;
+    }
+    await FileSystem.copyAsync({
+      from:result.uri,
+      to:FileSystem.documentDirectory+"actionsImages"+`${randomFileName}.${fileType}`
+    })
+    return FileSystem.documentDirectory+"actionsImages"+`${randomFileName}.${fileType}`;
+  }catch(error){
+  console.log(error)
+  };
+}
+
+  async function selectImageToActionComponent(){
+    try{
+    const imageUrl= await pickImage()
+    dispatch(setImageToActionComponent(imageUrl))
+  }catch(error){
+    console.log(error)
+  } 
+  }
+
   return (
     <View style={styles.container}>
-      {showEditingColorActionComponent ? (
+      {!showEditingColorActionComponent ? (
         <>
           <TouchableOpacity
             style={{ position: 'absolute', top: 10, right: 10 }}
@@ -36,13 +99,25 @@ export default function CreateActionModal(props) {
             />
           </TouchableOpacity>
           <View style={styles.actionInformationContainer}>
-            <View style={styles.addImageIconContainer}>
+            {!editingActionComponet.imageUrl?
+            <TouchableOpacity style={styles.addImageIconContainer}
+            onPress={()=>selectImageToActionComponent()}
+            >
               <MaterialCommunityIcons
                 name="camera-plus"
                 size={Constants.Fonts.xLargeFontSize}
                 color={Constants.Colors.primaryText}
               />
-            </View>
+            </TouchableOpacity>:
+            <View style={styles.addImageIconContainer}>
+            <Image
+              style={styles.actionImage}
+              resizeMode="contain"
+              source={{uri:editingActionComponet.imageUrl}}
+            />
+          </View>
+            }
+
             <TextInput
               style={styles.input}
               placeholder="Nome da Ação"
