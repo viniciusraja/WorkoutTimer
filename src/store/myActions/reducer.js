@@ -1,12 +1,15 @@
 const initialState = {
+  actionsList:[],
   showCreateActionComponent: false,
   showEditingActionColorComponent: false,
   showEditingActionIconComponent:false,
-  editingActionComponet: {
+  showEditingActionSoundComponent:false,
+  editingActionComponent: {
     color: '',
     imageUrl:'',
     iconName:'',
-    soundEffect:''
+    sound:'',
+    duration:''
   },
 };
 
@@ -27,37 +30,49 @@ const getActions = (state = initialState, action) => {
         ...state,
         showEditingActionIconComponent: !state.showEditingActionIconComponent,
       };
+    case 'SHOW_EDDITING_ACTION_SOUND_COMPONENT':
+      return {
+        ...state,
+        showEditingActionSoundComponent: !state.showEditingActionSoundComponent,
+      };
     case 'SET_COLOR_TO_ACTION_COMPONENT':
       return {
         ...state,
-        editingActionComponet: {
-          ...state.editingActionComponet,
+        editingActionComponent: {
+          ...state.editingActionComponent,
           color: action.payload,
         },
       };
     case 'SET_IMAGE_TO_ACTION_COMPONENT':
       return {
         ...state,
-        editingActionComponet: {
-          ...state.editingActionComponet,
+        editingActionComponent: {
+          ...state.editingActionComponent,
           imageUrl: action.payload,
         },
       };
     case 'SET_ICON_TO_ACTION_COMPONENT':
       return {
         ...state,
-        editingActionComponet: {
-          ...state.editingActionComponet,
+        editingActionComponent: {
+          ...state.editingActionComponent,
           iconName: action.payload,
         },
       };
-    case 'SET_SOUND_EFFECT_TO_ACTION_COMPONENT':
+    case 'SET_SOUND_TO_ACTION_COMPONENT':
       return {
         ...state,
-        editingActionComponet: {
-          ...state.editingActionComponet,
-          soundEffect: action.payload,
+        editingActionComponent: {
+          ...state.editingActionComponent,
+          sound: action.payload,
         },
+      };
+    case 'SET_ACTIONS_LIST':
+      return {
+        ...state,
+        actionsList: [
+          ...action.payload,
+        ],
       };
     default:
       return state;
