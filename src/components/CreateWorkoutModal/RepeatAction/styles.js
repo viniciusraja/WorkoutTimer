@@ -1,0 +1,130 @@
+import { StyleSheet } from 'react-native';
+import Constants from 'config/constants';
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingHorizontal: 10,
+    backgroundColor: Constants.Colors.backgroundColor,
+  },
+ 
+  titleMyWorkouts: {
+    width: '90%',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    marginVertical: 10,
+    fontFamily: Constants.Fonts.primaryFontFamily,
+    fontSize: Constants.Fonts.mediumFontSize,
+    color: Constants.Colors.primaryText,
+  },
+  actionsList: {
+    width: Constants.Layout.window.width,
+    height: '100%',
+  },
+  contentContainerStyleList: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  actionContainer: {
+    width: Constants.Layout.window.width,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal:10,
+  },
+  actionButtonContainer:{
+    width: Constants.Layout.window.width*0.55,
+    height:'100%',
+  },
+  actionButton: {
+    width: '100%',
+    height:Constants.Layout.window.height * 0.18
+  },
+  intervalMarker:{
+    height:'100%',
+    position:'absolute',
+    right:30,
+    width:2,
+    backgroundColor:Constants.Colors.backgroundColorLight,
+    
+  },
+  actionRepetitionMarkerContainer: {
+    width: Constants.Layout.window.width*0.22,
+    height:Constants.Layout.window.height * 0.19,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  actionRepetitionMarkerContainerTitle:{
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontFamily: Constants.Fonts.primaryFontFamily,
+    fontSize: Constants.Fonts.smallFontSize,
+    alignSelf:'center',
+    color: Constants.Colors.primaryText,
+  },
+  inputActionRepetition:{
+    backgroundColor:Constants.Colors.backgroundColorLight,
+    height:30,
+    width:30,
+    borderRadius:10,
+    textAlign: 'center',
+    textAlignVertical: 'bottom',
+    fontFamily: Constants.Fonts.primaryBoldFontFamily,
+    fontSize: Constants.Fonts.largeFontSize,
+    alignSelf:'center',
+    color: Constants.Colors.darkText,
+  },
+  actionRepetitionMarkerButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Constants.Layout.window.width*0.20,
+    height: Constants.Layout.window.height*0.06,
+    borderRadius: 30,
+    backgroundColor:Constants.Colors.cancelColor,
+  },
+  actionRepetitionMarkerText: {
+    height: 30,
+    width:'40%',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontFamily: Constants.Fonts.primaryFontFamily,
+    fontSize: Constants.Fonts.smallFontSize,
+    alignSelf:'center',
+    color: Constants.Colors.primaryText,
+  },
+  actionRepetitionMarkerButtonText:{
+    width:'100%',
+    height:'100%',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontFamily: Constants.Fonts.primaryFontFamily,
+    fontSize: Constants.Fonts.smallFontSize,
+    color: Constants.Colors.primaryText,
+  },
+  footerButtonsContainer: {
+    width: Constants.Layout.window.width,
+    height: Constants.Layout.footerHeight + 50,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+  },
+  createCicleButtonContainer: {
+    marginVertical: 10,
+    height: '25%',
+    width: '45%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: Constants.Layout.window.height * 0.2,
+    backgroundColor: Constants.Colors.agreeColor,
+    elevation: 2,
+  },
+  createCicleButtonText: {
+    width: '90%',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontFamily: Constants.Fonts.primaryBoldFontFamily,
+    fontSize: Constants.Fonts.mediumFontSize,
+    color: Constants.Colors.primaryText,
+  },
+});
