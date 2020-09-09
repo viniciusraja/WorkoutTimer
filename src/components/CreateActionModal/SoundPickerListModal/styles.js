@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     bottom:
       (Constants.Layout.window.height - Constants.Layout.headerHeight) / 2 -
       Constants.Layout.window.height * 0.4,
-    padding:10,
+    padding: 10,
     height: Constants.Layout.window.height * 0.8,
     width: Constants.Layout.window.width * 0.9,
     backgroundColor: Constants.Colors.backgroundColorLight,
@@ -20,14 +20,14 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  headerTitle:{
-    height:'10%',
-    width:'100%',
-    textAlign:'center',
-    textAlignVertical:'center',
+  headerTitle: {
+    height: '10%',
+    width: '100%',
+    textAlign: 'center',
+    textAlignVertical: 'center',
     fontFamily: Constants.Fonts.primaryBoldFontFamily,
     fontSize: Constants.Fonts.mediumFontSize,
-    color: Constants.Colors.darkText, 
+    color: Constants.Colors.darkText,
     alignSelf: 'center',
   },
 });

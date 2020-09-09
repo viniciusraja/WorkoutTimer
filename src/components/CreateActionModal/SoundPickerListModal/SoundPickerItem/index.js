@@ -11,22 +11,24 @@ export default function SoundPickerItem(props) {
   const dispatch = useDispatch();
   const qrCode = useSelector((state) => state.getQrCode);
   const [timerEnded, setTimerEnded] = useState(false);
-  const editingActionComponet = useSelector(
-    (state) => state.getActions.editingActionComponet
+  const editingActionComponent = useSelector(
+    (state) => state.getActions.editingActionComponent
   );
-  
   return (
-    <TouchableOpacity style={styles.container} onPress={() => {
-      playSoundAsset(props.path)
-      dispatch(setSoundToActionComponent(props))
-    }}
-      >
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        playSoundAsset(props.path);
+        dispatch(setSoundToActionComponent(props));
+      }}>
       <Text style={styles.title}>{props.name}</Text>
-      {props.name==editingActionComponet.sound.name&&<Ionicons
-        name="ios-checkmark"
-        size={Constants.Fonts.xLargeFontSize}
-        color={Constants.Colors.primaryText}
-      />}
+      {props.name == editingActionComponent.sound.name && (
+        <Ionicons
+          name="ios-checkmark"
+          size={Constants.Fonts.xLargeFontSize}
+          color={Constants.Colors.primaryText}
+        />
+      )}
     </TouchableOpacity>
   );
 }

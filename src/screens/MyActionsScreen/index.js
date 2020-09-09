@@ -13,7 +13,7 @@ import { useNavigation } from 'react-navigation-hooks';
 
 import Constants from 'config/constants';
 import { styles } from './styles';
-import Footer from 'components/Footer/HomeScreen';
+import Footer from 'components/Footer';
 import MainRectangleButton from 'components/MainRectangleButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
@@ -24,27 +24,20 @@ export default function MyActionsScreen() {
   const [userCelNumeber, setUserCelNumeber] = useState('');
   const { navigate } = useNavigation();
   const dispatch = useDispatch();
-
-  const showCreateActionComponent = useSelector(
-    (state) => state.getActions.showCreateActionComponent
+  const actionsList = useSelector(
+    (state) => state.getActions.actionsList
   );
+ 
   return (
     <View style={styles.container}>
       <FlatList
         style={styles.actionsList}
         contentContainerStyle={{
-          justifyContent: 'center',
+          justifyContent: 'center', 
           alignItems: 'center',
         }}
-        data={[
-          { id: 1 },
-          { id: 2 },
-          { id: 3 },
-          { id: 4 },
-          { id: 5 },
-          { id: 6 },
-        ]}
-        renderItem={({ item }) => <MainRectangleButton />}
+        data={actionsList}
+        renderItem={({ item }) => <MainRectangleButton {...item} />}
         keyExtractor={(item) => `${item.id}`}
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={() => (
@@ -54,18 +47,11 @@ export default function MyActionsScreen() {
           <View style={{ width: '100%', height: 10 }} />
         )}
         ListFooterComponent={() => (
-          <View style={{ width: '100%', height: 10 }} />
+          <View style={{ width: '100%', height: Constants.Layout.footerHeight+10 }} />
         )}
       />
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={showCreateActionComponent}
-        onRequestClose={() => {
-          dispatch(setShowCreateActionComponent());
-        }}>
+     
         <CreateActionModal />
-      </Modal>
     </View>
   );
 }

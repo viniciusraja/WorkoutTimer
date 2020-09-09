@@ -7,38 +7,45 @@ import Constants from 'config/constants';
 import { styles } from './styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import CountDown from 'react-native-countdown-component';
-import { setQrCode } from 'store/qrCode/actions';
+import { dropTable } from 'database/database';
 export default function MainRectangleButton(props) {
   const dispatch = useDispatch();
-  const qrCode = useSelector((state) => state.getQrCode);
   const [timerEnded, setTimerEnded] = useState(false);
+  return ( 
+    <View style={[styles.container,{backgroundColor:props.color}]}>
+      <View style={styles.actionImageContainer}>
+        {props.imageUrl?<Image
+          style={styles.actionImage}
+          resizeMode="contain"
+          source={require('assets/images/Icon.png')}
+        />:
+        (props.iconName&&<MaterialCommunityIcons
+              name={`${props.iconName}`}
+              style={styles.icon}
+              size={Constants.Fonts.xLargeFontSize}
+              color={Constants.Colors.primaryText}
+            />)
+        }
+      </View>
+      <View style={styles.actionMainInformationContainer}>
+        <Text style={styles.actionText}>{props.name}</Text>
+        <Text style={styles.actionInformationTimeText}>
+          props.actionInformation
+        </Text>
+      </View>
+      <View style={styles.actionSubInformationContainer}>
+        <TouchableOpacity 
+        onPress={()=>dropTable()}
+        >
 
-  useEffect(() => {
-    dispatch(setQrCode(''));
-  }, [timerEnded]);
-  return (
-    <View style={styles.container}>
-          <View
-          style={styles.actionImageContainer}
-          >
-            <Image
-            style={styles.actionImage}
-            resizeMode="contain"
-            source={require('assets/images/Icon.png')}
-            />
-          </View>
-          <View
-          style={styles.actionMainInformationContainer}
-          >
-          <Text style={styles.actionText}>props.ac</Text>
-          <Text style={styles.actionInformationTimeText}>props.actionInformation</Text>
-          </View>
-          <View
-          style={styles.actionSubInformationContainer}
-          >
-          <MaterialCommunityIcons name="dots-horizontal-circle" size={Constants.Fonts.largeFontSize} color={Constants.Colors.primaryText}/>
-          <Text style={styles.actionTimeText}>2:00</Text>
-          </View>
+        <MaterialCommunityIcons
+          name="dots-horizontal-circle"
+          size={Constants.Fonts.largeFontSize}
+          color={Constants.Colors.primaryText}
+          />
+          </TouchableOpacity> 
+        {!!props.duration&&<Text style={styles.actionTimeText}>{props.duration}</Text>}
+      </View>
     </View>
   );
 }

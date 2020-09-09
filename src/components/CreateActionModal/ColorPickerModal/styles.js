@@ -4,11 +4,11 @@ import Constants from 'config/constants';
 export const styles = StyleSheet.create({
   container: {
     position: 'absolute',
+    paddingVertical: 20,
     bottom:
       (Constants.Layout.window.height - Constants.Layout.headerHeight) / 2 -
-      Constants.Layout.window.height * 0.4,
-    paddingBottom:10,
-    height: Constants.Layout.window.height * 0.8,
+      Constants.Layout.window.height * 0.3,
+    height: Constants.Layout.window.height * 0.6,
     width: Constants.Layout.window.width * 0.9,
     backgroundColor: Constants.Colors.backgroundColorLight,
     borderRadius: Constants.Layout.window.height * 0.015,
@@ -16,18 +16,20 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignSelf: 'center',
   },
-  actionsList: {
+  header: {
+    position: 'absolute',
+    top: 10,
     width: '100%',
-    height: '100%',
-  },
-  headerTitle:{
-    height:'15%',
-    width:'100%',
-    textAlign:'center',
-    textAlignVertical:'center',
-    fontFamily: Constants.Fonts.primaryBoldFontFamily,
-    fontSize: Constants.Fonts.mediumFontSize,
-    color: Constants.Colors.darkText,
+    justifyContent: 'center',
     alignSelf: 'center',
+    flexDirection: 'row',
+  },
+  headerTitle: {
+    fontSize: Constants.Fonts.mediumFontSize,
+    fontFamily: Constants.Fonts.primaryBoldFontFamily,
+    color: Constants.Colors.darkText,
+    width: '40%',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   },
 });

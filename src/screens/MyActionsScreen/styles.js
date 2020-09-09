@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     backgroundColor: Constants.Colors.backgroundColor,
   },
   actionsList: {
-    width: Constants.Layout.window.width,
+    width: Constants.Layout.window.width*0.9,
     height: '100%',
   },
   titleLastWorkouts: {
